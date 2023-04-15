@@ -9,43 +9,43 @@ import {
     Post,
   } from '@nestjs/common';
   import { ComputersService } from './computers.service';
-  import { CreateProductDto } from './dto/computers.dto';
+  import { CreateComputersDto } from './dto/computers.dto';
   
-  @Controller('productos')
+  @Controller('computers')
   export class ComputersController {
-    constructor(private readonly productServiceRepo: ComputersService) {}
+    constructor(private readonly computersServiceRepo: ComputersService) {}
   
     //Metodo para crear un producto
     @Post()
-    create(@Body() productoDto: CreateProductDto) {
-      return this.productServiceRepo.create(productoDto);
+    create(@Body() productoDto: CreateComputersDto) {
+      return this.computersServiceRepo.create(productoDto);
     }
   
     //Metodo para mostrar todos los productos
     @Get()
     findAll() {
-      return this.productServiceRepo.findAll();
+      return this.computersServiceRepo.findAll();
     }
   
     //Metodo para mostrar un producto especifico
     @Get(':id')
     findOne(@Param('id', ParseUUIDPipe) id: string) {
-      return this.productServiceRepo.findOne(id);
+      return this.computersServiceRepo.findOne(id);
     }
   
     //Eliminar un producto especifico
     @Delete(':id')
     remove(@Param('id', ParseUUIDPipe) id: string) {
-      return this.productServiceRepo.remove(id);
+      return this.computersServiceRepo.remove(id);
     }
   
     //Crear método patch, para actualizar
     @Patch(':id')
     update(
       @Param('id', ParseUUIDPipe) id: string,
-      @Body() updateProductDto: CreateProductDto
+      @Body() updateProductDto: CreateComputersDto
     ){
-      return this.productServiceRepo.update(id, updateProductDto);
+      return this.computersServiceRepo.update(id, updateProductDto);
     }
   }
   

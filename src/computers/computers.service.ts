@@ -1,49 +1,49 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { Product } from './entities/computers.entity';
-import { CreateProductDto } from './dto/computers.dto';
+import { Computers} from './entities/computers.entity';
+import { CreateComputersDto } from './dto/computers.dto';
 
 @Injectable()
 export class ComputersService {
   constructor(
-    @InjectRepository(Product)
-    private readonly productRepository: Repository<Product>,
+    @InjectRepository(Computers)
+    private readonly computersRepository: Repository<Computers>,
   ) {}
 
   //Metodo para crear un producto
-  async create(productoDto: CreateProductDto) {
-    const product = this.productRepository.create(productoDto);
-    await this.productRepository.save(product);
+  async create(productoDto: CreateComputersDto) {
+    const product = this.computersRepository.create(productoDto);
+    await this.computersRepository.save(product);
 
     return product;
   }
 
   //Metodo para visualizar todos los productos
   findAll() {
-    return this.productRepository.find();
+    return this.computersRepository.find();
   }
 
   //Metodo para visualizar un producto especifico
   findOne(id: string) {
-    return this.productRepository.findOneBy({ id });
+    return this.computersRepository.findOneBy({ id });
   }
 
   //Remover un producto especifico
   async remove(id: string) {
     const product = await this.findOne(id);
-    await this.productRepository.remove(product);
+    await this.computersRepository.remove(product);
     return 'Producto eliminado satisfactoriamente';
   }
 
   //Actualizar un producto especifico
-  async update(id: string, cambios: CreateProductDto) {
+  async update(id: string, cambios: CreateComputersDto) {
     const findProduct = await this.findOne(id);
-    const updatedProducto = await this.productRepository.merge(
+    const updatedProducto = await this.computersRepository.merge(
       findProduct,
       cambios,
     );
 
-    return this.productRepository.save(updatedProducto);
+    return this.computersRepository.save(updatedProducto);
   }
 }

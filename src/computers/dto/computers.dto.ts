@@ -1,12 +1,7 @@
-import { IsNotEmpty, IsNumber, IsString, MinLength } from 'class-validator';
+import { IsAlphanumeric, IsNotEmpty, IsNumber, IsString } from 'class-validator';
 
-export class CreateProductDto {
-  @IsString()
-  @IsNotEmpty()
-  @MinLength(5)
-  title: string;
+export class CreateComputersDto {
 
-  @IsNumber()
   @IsNotEmpty()
   marca: string;
 
@@ -14,19 +9,15 @@ export class CreateProductDto {
   @IsNotEmpty()
   precio: number;
 
-  @IsNumber()
-  @IsNotEmpty()
+  @IsAlphanumeric()
   procesador: string;
 
-  @IsNumber()
-  @IsNotEmpty()
+  @IsAlphanumeric()
   memoriaRAM: string;
 
-  @IsNumber()
-  @IsNotEmpty()
+  @IsString()
   SO: string;
 
-  @IsNumber()
-  @IsNotEmpty()
+  @IsString()
   tipo_de_disco: string;
 }
