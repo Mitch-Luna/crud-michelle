@@ -14,38 +14,33 @@ import {
   @Controller('computers')
   export class ComputersController {
     constructor(private readonly computersServiceRepo: ComputersService) {}
-  
-    //Metodo para crear un producto
+
     @Post()
-    create(@Body() productoDto: CreateComputersDto) {
-      return this.computersServiceRepo.create(productoDto);
+    create(@Body() computersDto: CreateComputersDto) {
+      return this.computersServiceRepo.create(computersDto);
     }
-  
-    //Metodo para mostrar todos los productos
+
     @Get()
     findAll() {
       return this.computersServiceRepo.findAll();
     }
-  
-    //Metodo para mostrar un producto especifico
+
     @Get(':id')
     findOne(@Param('id', ParseUUIDPipe) id: string) {
       return this.computersServiceRepo.findOne(id);
     }
   
-    //Eliminar un producto especifico
     @Delete(':id')
     remove(@Param('id', ParseUUIDPipe) id: string) {
       return this.computersServiceRepo.remove(id);
     }
-  
-    //Crear método patch, para actualizar
+
     @Patch(':id')
     update(
       @Param('id', ParseUUIDPipe) id: string,
-      @Body() updateProductDto: CreateComputersDto
+      @Body() updateComputersDto: CreateComputersDto
     ){
-      return this.computersServiceRepo.update(id, updateProductDto);
+      return this.computersServiceRepo.update(id, updateComputersDto);
     }
   }
   
